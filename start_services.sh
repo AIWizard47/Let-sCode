@@ -2,7 +2,7 @@
 
 echo "Starting services..."
 
-cd /home/kali/Desktop/Let-sCode/CodePlatform
+cd /home/kali/Desktop/Let-sCode
 source .venv/bin/activate
 
 nohup python manage.py runserver 0.0.0.0:8000 > logs/django.log 2>&1 &
