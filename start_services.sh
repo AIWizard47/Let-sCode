@@ -2,14 +2,20 @@
 
 echo "Starting services..."
 
-TERMINAL=xfce4-terminal
+cd /home/kali/Desktop/Let-sCode/CodePlatform
+source .venv/bin/activate
 
-$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform && source .venv/bin/activate && python manage.py runserver'"
+nohup python manage.py runserver 0.0.0.0:8000 > logs/django.log 2>&1 &
 
-$TERMINAL --hold -e "bash -c 'redis-server'"
+nohup redis-server > logs/redis.log 2>&1 &
 
-$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform/code && source .venv/bin/activate && celery -A CodePlatform worker --pool=solo -l info'"
+nohup celery -A CodePlatform worker --pool=solo -l info > logs/celery_worker.log 2>&1 &
 
-$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform/code && source .venv/bin/activate && celery -A CodePlatform beat -l info'"
+nohup celery -A CodePlatform beat -l info > logs/celery_beat.log 2>&1 &
 
-$TERMINAL --hold -e "bash -c 'cd ~/sandbox/Sandbox && source .venv/bin/activate && python manage.py runserver 8080'"
+cd /home/kali/Desktop/Let-sCode/Sandbox
+source .venv/bin/activate
+
+nohup python manage.py runserver 0.0.0.0:8080 > logs/sandbox.log 2>&1 &
+
+echo "All services started."
