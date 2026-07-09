@@ -8,8 +8,8 @@ $TERMINAL --hold -e "bash -c 'cd ~/CodePlatform && source .venv/bin/activate && 
 
 $TERMINAL --hold -e "bash -c 'redis-server'"
 
-$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform && source .venv/bin/activate && celery -A CodePlatform worker --pool=solo -l info'"
+$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform/code && source .venv/bin/activate && celery -A CodePlatform worker --pool=solo -l info'"
 
-$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform && source .venv/bin/activate && celery -A CodePlatform beat -l info'"
+$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform/code && source .venv/bin/activate && celery -A CodePlatform beat -l info'"
 
-$TERMINAL --hold -e "bash -c 'cd ~/Sandbox && source .venv/bin/activate && python manage.py runserver 8080'"
+$TERMINAL --hold -e "bash -c 'cd ~/sandbox/Sandbox && source .venv/bin/activate && python manage.py runserver 8080'"
