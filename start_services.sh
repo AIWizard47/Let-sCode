@@ -2,10 +2,14 @@
 
 echo "Starting services..."
 
-source ~/.virtualenvs/codeeditor/bin/activate
+TERMINAL=xfce4-terminal
 
-gnome-terminal -- bash -c "cd ~/CodePlatform && python manage.py runserver"
-gnome-terminal -- bash -c "redis-server"
-gnome-terminal -- bash -c "cd ~/CodePlatform && celery -A CodePlatform worker --pool=solo -l info"
-gnome-terminal -- bash -c "cd ~/CodePlatform && celery -A CodePlatform beat -l info"
-gnome-terminal -- bash -c "cd ~/Sandbox && python manage.py runserver 8080"
+$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform && source .venv/bin/activate && python manage.py runserver'"
+
+$TERMINAL --hold -e "bash -c 'redis-server'"
+
+$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform && source .venv/bin/activate && celery -A CodePlatform worker --pool=solo -l info'"
+
+$TERMINAL --hold -e "bash -c 'cd ~/CodePlatform && source .venv/bin/activate && celery -A CodePlatform beat -l info'"
+
+$TERMINAL --hold -e "bash -c 'cd ~/Sandbox && source .venv/bin/activate && python manage.py runserver 8080'"
