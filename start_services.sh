@@ -2,10 +2,16 @@
 
 echo "Starting services..."
 
-cd /home/kali/Desktop/Let-sCode
-source .venv/bin/activate
+# Activate virtual environment
+source /home/kali/Desktop/Let-sCode/.venv/bin/activate
 
-cd /home/kali/Desktop/Let-sCode/CodePlatform/Code/
+# -----------------------------
+# CodePlatform
+# -----------------------------
+cd /home/kali/Desktop/Let-sCode/CodePlatform/Code || exit
+
+# Create logs directory if it doesn't exist
+mkdir -p logs
 
 nohup python manage.py runserver 0.0.0.0:8000 > logs/django.log 2>&1 &
 
@@ -15,11 +21,16 @@ nohup celery -A CodePlatform worker --pool=solo -l info > logs/celery_worker.log
 
 nohup celery -A CodePlatform beat -l info > logs/celery_beat.log 2>&1 &
 
-cd /home/kali/Desktop/Let-sCode/
-source .venv/bin/activate
+# -----------------------------
+# Sandbox
+# -----------------------------
+cd /home/kali/Desktop/Let-sCode/sandbox/SandBox || exit
 
-cd /home/kali/Desktop/Let-sCode/sandbox/Sandbox/
+# Create logs directory if it doesn't exist
+mkdir -p logs
 
 nohup python manage.py runserver 0.0.0.0:8080 > logs/sandbox.log 2>&1 &
 
-echo "All services started."
+echo "=================================="
+echo " All services started successfully"
+echo "=================================="
