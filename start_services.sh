@@ -24,7 +24,7 @@ nohup celery -A CodePlatform beat -l info > /home/kali/Desktop/Let-sCode/CodePla
 # -----------------------------
 # Sandbox
 # -----------------------------
-cd /home/kali/Desktop/Let-sCode/sandbox/SandBox || exit
+cd /home/kali/Desktop/Let-sCode/sandbox || exit
 
 # Create logs directory if it doesn't exist
 mkdir -p logs
