@@ -34,3 +34,4 @@ nohup python /home/kali/Desktop/Let-sCode/sandbox/SandBox/manage.py runserver 0.
 echo "=================================="
 echo " All services started successfully"
 echo "=================================="
+echo "running in 192.168.190.129:8000"
