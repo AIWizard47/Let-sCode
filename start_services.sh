@@ -17,9 +17,9 @@ nohup python /home/kali/Desktop/Let-sCode/CodePlatform/Code/manage.py runserver 
 
 nohup redis-server > /home/kali/Desktop/Let-sCode/CodePlatform/logs/redis.log 2>&1 &
 
-nohup celery -A /home/kali/Desktop/Let-sCode/CodePlatform/Code worker --pool=solo -l info > /home/kali/Desktop/Let-sCode/CodePlatform/logs/celery_worker.log 2>&1 &
+nohup celery -A CodePlatform worker --pool=solo -l info > /home/kali/Desktop/Let-sCode/CodePlatform/logs/celery_worker.log 2>&1 &
 
-nohup celery -A /home/kali/Desktop/Let-sCode/CodePlatform/Code beat -l info > /home/kali/Desktop/Let-sCode/CodePlatform/logs/celery_beat.log 2>&1 &
+nohup celery -A CodePlatform beat -l info > /home/kali/Desktop/Let-sCode/CodePlatform/logs/celery_beat.log 2>&1 &
 
 # -----------------------------
 # Sandbox
